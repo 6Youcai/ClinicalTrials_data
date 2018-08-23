@@ -16,8 +16,9 @@ def analysis(html, f):
     rows = table.find_all('tr')
     for line in rows[1:]:
         col = line.find_all('td')
+        id = col[1].a['id']
         cells = map(lambda x: x.text.strip(), col)
-        text = "\t".join(cells) + '\n'
+        text = "\t".join(cells) + '\t' + id + '\n'
         f.write(text)
 
 def main():
