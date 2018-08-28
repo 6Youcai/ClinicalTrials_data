@@ -10,7 +10,7 @@ def internet(page = 1):
     return web
 
 def analysis(html, f):
-    soup = BeautifulSoup(html)
+    soup = BeautifulSoup(html, features = "lxml")
     searchfrm = soup.find_all(id = 'searchfrm')
     table = searchfrm[0].find_all('table')[2]
     rows = table.find_all('tr')
@@ -22,7 +22,7 @@ def analysis(html, f):
         f.write(text)
 
 def main():
-    all_pages = 160
+    all_pages = 161
     out = open("chinadrugtrials.txt", 'w')
     for i in range(1, all_pages + 1):
         web = internet(i)
